@@ -17,24 +17,102 @@
 
 %>
 <script>
-	
 	$(function(){
+		
+		// 댓글 내용 전역 변수
+		
+	});
+
+
+
+
+
+
+
+
+
+
+	$(function(){
+		// 댓글 수정
+		$('.mod').click(function(e){
+			e.preventDefault();
+			
+			const txt = $(this).text();
+			
+			if(txt == '수정'){
+				$(this).parent().prev().addClass('modi');
+				$(this).parent().prev().attr('readonly', false);
+				$(this).parent().prev().focus();
+				$(this).text('수정완료');
+				$(this).prev().show();
+			}else{
+				// 수정완료 클릭	
+				
+				if(confirm('정말 수정하시겠습니까?')){
+					// 수정 데이터 전송
+					$(this).closest('form').submit();
+				}
+				
+				// 수정모드 해체
+				$(this).parent().prev().removeClass().
+				$(this).parent().attr('readonly', true);
+				$(this).hide();
+				$(this).next().text('수정');
+				
+			}
+		
+	});
+		
+		// 댓글 수정 취소
+		$('.can').click(function(e){
+			e.preventDefault();
+			
+			$(this).parent().prev()
+			
+		});
+		
+		
+		
+		
+		// 댓글 삭제
 		
 		$('.del').click(function(){
 			
 			const result = confirm('정말 삭제 하시겠습니까?');
 			
 			if(result) {
-				return true;
+					return true;
 			}else {
-				return false;
+					return false;
 			}
 			
-			return true;
+			
 		});
 		
-	});
-
+		// 댓글쓰기 취소
+		// Javascript 방식
+		const commentContent = document.querySelector('form >  textarea[name=content]');
+		const btnCancel = document.querySelctor('.btnCanel');
+		btnCancel.onclick = function(e){
+					e.preventDefault();
+					commentContent.value = '';
+		}
+		
+		// jQuery 방식
+		$('.btnCancel').click(function(e){
+				e.prevetnDefault();
+				$('form > textarea[name=content]').val('');
+		});
+		
+		
+		// 원글 삭제
+		const btnDelete = document.getElementsByClassName('btnDelete')[0];
+		
+		
+		
+		
+		}
+		
 
 
 </script>
@@ -72,7 +150,7 @@
 		<section class="commentList">
 			<h3>댓글목록</h3>
 			<% for(ArticleDTO comment : comments) { %>
-			<article class="commen">
+			<article class="comment">
 				<span>
 					<span><%= comment.getNick() %></span>
 					<span><%= comment.getRdate() %></span>  <!-- fullRdate() -->

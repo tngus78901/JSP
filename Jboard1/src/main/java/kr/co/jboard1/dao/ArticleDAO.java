@@ -101,6 +101,24 @@ public class ArticleDAO extends DBHelper {
 		    	
 		    }
 		    
+		    public void updateComment(String no, String content) {
+		    		try {
+		    			
+		    				conn = getConnection();
+		    				psmt = 
+		    		
+		    			
+						
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+		    	
+		    }
+		    
+		    
+		    
+		    
+		    
 		    public void deleteArticle(int no) {
 		    	
 		    	
@@ -186,7 +204,9 @@ public class ArticleDAO extends DBHelper {
 		    }
 		    	
 		
-		
+		 public void updateComment(String no, String content) {
+			 
+		 }
 		
 		
 		
