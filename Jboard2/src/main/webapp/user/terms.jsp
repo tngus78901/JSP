@@ -6,7 +6,7 @@
                     <caption>사이트 이용약관</caption>
                     <tr>
                         <td>
-                            <textarea name="terms">${requestScope.dto.getTemrs()}</textarea>
+                            <textarea name="terms">${requestScope.dto.getTerms()}</textarea>
                             <label><input type="checkbox" name="terms"/>&nbsp;동의합니다.</label>                     
                         </td>
                     </tr>

@@ -13,7 +13,7 @@ window.onload = function() {
 				const uid = inputUid.value;
 				
 				// 아이디 유효성 검사
-				if(!uid.mathch(reUid)){
+				if(!uid.match(reUid)){
 						uidResult.innerTeariaValueText = '유효한 아이디가 아닙니다.';
 						uidResult.style.color= 'red';
 						isUidOk = false;

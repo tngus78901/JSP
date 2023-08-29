@@ -21,7 +21,7 @@ public class DBHelper {
 		public Connection getConnection() {
 			
 				try {
-					 	Context ctx = (Context) new InitialContext().lookup("javaLcomp/env");
+					 	Context ctx = (Context) new InitialContext().lookup("java:comp/env");
 					 	DataSource ds = (DataSource) ctx.lookup("jdbc/Jboard");
 					 	conn = ds.getConnection();
 				}catch (Exception e) {

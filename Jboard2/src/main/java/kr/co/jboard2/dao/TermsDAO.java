@@ -14,19 +14,18 @@ public class TermsDAO extends DBHelper {
 	
 		
 		public TermsDTO selectTerms() {
-			
-				TermsDTO dto = new TermsDTO();
+			TermsDTO dto = new TermsDTO();
 					
 			try {
-					conn = getConnection();
-					stmt = conn.createStatement();
-					rs = stmt.executeQuery(SQL.SELECT_TERMS);
-					
-					if(rs.next()) {
-							dto.setTerms(rs.getString(1));
-							dto.setPrivacy(rs.getString(2));
-					}
-					close();
+				conn = getConnection();
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(SQL.SELECT_TERMS);
+				
+				if(rs.next()) {
+						dto.setTerms(rs.getString(1));
+						dto.setPrivacy(rs.getString(2));
+				}
+				close();
 					
 			} catch (Exception e) {
 				logger.error("selectTerms error :" + e.getMessage());

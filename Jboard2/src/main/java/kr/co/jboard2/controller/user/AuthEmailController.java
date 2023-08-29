@@ -16,46 +16,71 @@ import com.google.gson.JsonObject;
 
 import kr.co.jboard2.service.UserService;
 
-
 @WebServlet("/user/authEmail.do")
 public class AuthEmailController extends HttpServlet {
 
-	private static final long serialVersionUID = -6486832822987519935L;
+	private static final long serialVersionUID = 9094836002104883300L;
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	private UserService service = UserService.getInstance();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
-			String email = req.getParameter("email");
+
+		String name  = req.getParameter("name");
+		String email = req.getParameter("email");
+		
+		logger.info("name : " + name);
+		logger.info("email : " + email);
+		
+		int result = 0;
+		int status = 0;
+		
+		if(name.isEmpty()) {
+			// 회원가입할 때 이메일 인증
+			result = service.selectCountEmail(email);
+			status = service.sendCodeByEmail(email);
 			
-			int status = service.sendCodeByEmail(email);
+			logger.info("here1 : " + result);
+			logger.info("here2 : " + status);
 			
-			// JSON 생성
-			JsonObject json = new JsonObject();
-			json.addProperty("status", status);
+		}else {
+			// 아이디찾기할 때 이메일 인증
+			result = service.selectCountNameAndEmail(name, email);
+			logger.info("here3 : " + result);
 			
-			// JSON 출력
-			PrintWriter writer = resp.getWriter();
-			writer.print(json.toString());
+			if(result == 1) {
+				status = service.sendCodeByEmail(email);
+				logger.info("here4 : " + status);
+			}
+		}
+		
+		// JSON 생성
+		JsonObject json = new JsonObject();
+		json.addProperty("result", result);
+		json.addProperty("status", status);
+		
+		// JSON 출력
+		PrintWriter writer = resp.getWriter();
+		writer.print(json.toString());
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-			String code = req.getParameter("code");
-			logger.info("code : " + code);
-			
-			int result = service.confirmCodeByEmail(code);
-			logger.info("result : " + result);
-			
-			// JSON 생성
-			JsonObject json = new JsonObject();
-			json.addProperty("result", result);
-			
-			// JSON 출력
-			PrintWriter writer = resp.getWriter();
-			writer.print(json.toString());
-}
+		String code = req.getParameter("code");
+		logger.info("code : " + code);
+		
+		int result = service.cofirmCodeByEmail(code);
+		logger.info("result : " + result);
+		
+		// JSON 생성
+		JsonObject json = new JsonObject();
+		json.addProperty("result", result);
+		
+		// JSON 출력
+		PrintWriter writer = resp.getWriter();
+		writer.print(json.toString());
+	
+	}
 }
