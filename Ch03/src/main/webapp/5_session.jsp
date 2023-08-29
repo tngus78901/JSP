@@ -1,3 +1,4 @@
+<%@page import="sub1.UserVo"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -25,15 +26,15 @@
 		
 		<h4>session 설정</h4>
 		<%
-			UserVo user = new UserVO("a101", "김유신", "010-1234-5998", 23);
+		
+
+			UserVo user = new UserVo("a101", "김유신", "010-1234-5998", 23);
 			
 			// session table에 user컬럼명으로 user객체 저장
 			session.setAttribute("userColumn", user);
 			
 			// session table에 저장된 userColumn 컬럼 값을 가져욤
-			UserVo userVo = (UserVo)session.getAttribute("userColum");   // Object는 최상위라 뭐든 형변환이 가능하다
-		
-		
+			UserVo userVo = (UserVo) session.getAttribute("userColum");   // Object는 최상위라 뭐든 형변환이 가능하다
 		%>
 		
 		<p>
