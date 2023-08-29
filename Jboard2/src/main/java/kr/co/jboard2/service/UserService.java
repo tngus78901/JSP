@@ -47,6 +47,8 @@ public class UserService {
 		public int selectCountHp(String hp) {
 				return dao.selectCountHp(hp);
 		}
+		public String selectCountnEmail()
+		
 		public UserDTO selectUser(String uid) {
 				return dao.selectUser(uid);
 		}
