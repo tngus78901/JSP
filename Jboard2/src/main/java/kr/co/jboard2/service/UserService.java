@@ -31,15 +31,15 @@ public class UserService {
 	private String generatedCode;
 	
 	public void insertUser(UserDTO dto) {
-		dao.insertUser(dto);
+			dao.insertUser(dto);
 	}
 	
 	public int selectCountUid(String uid) {
-		return dao.selectCountUid(uid);
+			return dao.selectCountUid(uid);
 	}
 	
 	public int selectCountNick(String nick) {
-		return dao.selectCountNick(nick);
+			return dao.selectCountNick(nick);
 	}
 	
 	public int selectCountHp(String hp) {
@@ -54,24 +54,33 @@ public class UserService {
 		return dao.selectCountNameAndEmail(name, email);				
 	}
 	
+	public int selectCountUidAndEmail(String uid,String email) {
+		return dao.selectCountUidAndEmail(uid, email);
+	}
+	
 	public UserDTO selectUser(String uid, String pass) {
-		return dao.selectUser(uid, pass);
+			return dao.selectUser(uid, pass);
 	}
 	
 	public UserDTO selectUserByNameAndEmail(String name, String email) {
-		return dao.selectUserByNameAndEmail(name, email);				
+			return dao.selectUserByNameAndEmail(name, email);				
 	}
 	
 	public List<UserDTO> selectUsers() {
-		return dao.selectUsers();
+			return dao.selectUsers();
 	}
-	
+	public int updateUserForWithdraw(String uid) {
+				return dao.updateUserForWithdraw(uid);
+	}
 	public void updateUser(UserDTO dto) {
-		dao.updateUser(dto);
+			dao.updateUser(dto);
+	}
+	public int updateUserPass(String uid,String pass) {
+		return	dao.updateUserPass(uid, pass);
 	}
 	
 	public void deleteUser(String uid) {
-		dao.deleteUser(uid);
+			dao.deleteUser(uid);
 	}
 	
 	public int sendCodeByEmail(String receiver) {
@@ -128,15 +137,13 @@ public class UserService {
 	
 	public int cofirmCodeByEmail(String code) {
 		
-		if(code.equals(generatedCode)) {
-			logger.info("return 1...");
-			return 1;
-		}else {
-			logger.info("return 0...");
-			return 0;
-		}
+			if(code.equals(generatedCode)) {
+					logger.info("return 1...");
+					return 1;
+			}else {
+					logger.info("return 0...");
+					return 0;
+			}
 	}
-	
-	
-	
+		
 }

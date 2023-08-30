@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./_header.jsp" %>
-<main id="board">
+<main id="user">
             <section class="terms">
                 <table border="1">
                     <caption>사이트 이용약관</caption>

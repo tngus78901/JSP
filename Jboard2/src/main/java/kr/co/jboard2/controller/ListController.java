@@ -25,17 +25,13 @@ public class ListController extends HttpServlet{
 		HttpSession session = req.getSession();
 		UserDTO sessUser = (UserDTO) session.getAttribute("sessUser");
 		
-		if(sessUser == null) {
+		if(sessUser != null) {
 			RequestDispatcher dispatcher = req.getRequestDispatcher("list.jsp");
 			dispatcher.forward(req, resp);
 		}else {
 			resp.sendRedirect("/Jboard2/user/login.do?success=101");
 			
-		}
-		
-		
-	
-	
+		}	
 }
 
 }

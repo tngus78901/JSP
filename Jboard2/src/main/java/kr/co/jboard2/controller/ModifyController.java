@@ -19,7 +19,7 @@ public class ModifyController extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		
-		 	RequestDispatcher dispatcher = req.getRequestDispatcher("");
+		 	RequestDispatcher dispatcher = req.getRequestDispatcher("modify.jsp");
 		 	dispatcher.forward(req, resp);
 	}
 

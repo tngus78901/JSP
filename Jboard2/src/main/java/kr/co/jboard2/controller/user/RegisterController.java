@@ -16,19 +16,18 @@ import kr.co.jboard2.service.UserService;
 public class RegisterController extends HttpServlet {
 	
 		private static final long serialVersionUID = -7823640985897149772L;
-	
 		private UserService service = UserService.getInstance();
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		@Override
+		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/user/register.jsp");
 			dispatcher.forward(req, resp);
 			
 			
-	}
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		}
+		@Override
+		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 			String uid = req.getParameter("uid");
 			String pass1 = req.getParameter("pass1");
