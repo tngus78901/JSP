@@ -18,7 +18,7 @@
 	ArticleDAO dao = new ArticleDAO();
 	
 	// 댓글 입력
-	dao.insertComment(dto);
+	dao.insertCommnet(dto);
 	
 	// 댓글 카운트 수정
 	dao.updateArticleForCommentPlus(parent);
