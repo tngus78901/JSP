@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="./_header.jsp" %>
+<script src="/Jboard2/js/checkUser.js"></script>
 <script src="/Jboard2/js/validation.js"></script>
 <script src="/Jboard2/js/authEmail.js"></script>
 <script>
@@ -9,7 +10,6 @@
 						
 						if(isEmailOk) {
 								$('#formFindPass').submit();
-								
 						}else {
 								alert('이메일 인증을 수행하셔야 합니다.');
 						}
@@ -21,7 +21,7 @@
 </script>
 <main id="user">
     <section class="find findPass">
-        <form action="formFindPass" action="/Jboard2/user/findPass.do" method="post">
+        <form id="formFindPass" action="/Jboard2/user/findPass.do" method="post">
         		<input type="hidden" name="type" value="FIND_PASS"/>
             <table border="0">
                 <caption>비밀번호 찾기</caption>                        
@@ -34,12 +34,12 @@
                     <td>
                         <div>
                             <input type="email" name="email" placeholder="이메일 입력"/>
-                            <button type="button" class="btnAuth">인증번호 받기</button>
+                            <button type="button" id="btnEmailCode" class="btnAuth">인증번호 받기</button>
                             <span class ="resultEmailForPass"></span>
                         </div>
                         <div>
                             <input type="text" name="auth" disabled placeholder="인증번호 입력"/>
-                            <button type="button" class="btnConfirm">확인</button>
+                            <button type="button" id="btnEmailAuth" class="btnConfirm">확인</button>
                         </div>
                     </td>
                 </tr>                        

@@ -9,42 +9,42 @@
 
 	$(function(){
 	
-		alert('load2!')
+		//alert('load2!');
 		const inputUid = document.getElementsByName('uid')[0];
 		const inputPass = document.getElementsByName('pass2')[0];
 		
 		// 비밀번호 변경
 		const btnUpdatePass = document.getElementById('btnUpdatePass');
 		btnUpdatePass.addEventListener('click', function(){
-		
+			
 			if(isPassOk && confirm('정말 비밀번호를 수정하시겠습니까?')){
-				
 				// 폼데이터 객체 전송안됨... 나중에 연구를 해보자 
 				const formData = new FormData();
 				formData.append('kind', 'PASSWORD');
 				formData.append('uid' , inputUid.value);
-				formData.append('pass', inputUid.value);
+				formData.append('pass', inputPass.value);
 				
 				// fetch에서 post 데이터 전송을 위해 URLSearchParamas 사용
-				const paramsd = new URLSearchParms();
+				const params = new URLSearchParams();
 				params.append('kind', 'PASSWORD');
 				params.append('uid' , inputUid.value);
-				params.append('pass', inputUid.value);
+				params.append('pass', inputPass.value);
 			
 				// fetch를 함수로 AJAX 통신							
-				fetch('/Jboard2/user/myInfo.do'{
-							method: 'POST'
-							body: jsonData				
+				fetch('/Jboard2/user/myInfo.do',{
+							method: 'POST',
+							body: params			
 						})
 						.then((response)=>response.json())
 						.then((data)=>{
-								console.log('data : ' + data);
+								console.log('data : ' + data.result);
 							
 								if(data.result > 0){
 									alert('비밀번호가 수정되었습니다. 다시 로그인 하십시오.');
 									location.href = '/Jboard2/user/logout.do';
-							}
+								}
 		     			});
+				
 			}else{
 					alert('변경 비밀번호가 유효하지 않거나 일치하지 않습니다.');
 				
@@ -53,7 +53,7 @@
 		});
 		
 		// 탈퇴하기 
-		const btnWithdraw = document.getElemetById('btnWithdraw');
+		const btnWithdraw = document.getElementById('btnWithdraw');
 		btnWithdraw.addEventListener('click',function(){
 		
 				if(confirm('정말 탈퇴 하시겠습니까?')) {		
@@ -63,8 +63,8 @@
 					};
 			
 					$.ajax({
-							url: '/Jboard2/user/myInfo.do'
-							type: 'POST'
+							url: '/Jboard2/user/myInfo.do',
+							type: 'POST',
 							data: jsonData,
 							dataType: 'json',
 							success: function(data){

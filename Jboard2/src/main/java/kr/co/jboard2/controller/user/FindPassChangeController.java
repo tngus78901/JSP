@@ -43,7 +43,7 @@ public class FindPassChangeController extends HttpServlet {
 			
 			service.updateUserPass(uid, pass);
 			
-			resp.sendRedirect("/Jboard2/user/loging.do?success=300");
+			resp.sendRedirect("/Jboard2/user/login.do?success=300");
 	}
 
 }

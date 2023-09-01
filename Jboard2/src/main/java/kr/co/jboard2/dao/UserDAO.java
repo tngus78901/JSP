@@ -258,13 +258,13 @@ public class UserDAO extends DBHelper{
 				conn = getConnection();
 				psmt = conn.prepareStatement(SQL.UPDATE_USER);
 				psmt.setString(1, dto.getName());
-				psmt.setString(2, dto.getName());
-				psmt.setString(3, dto.getName());
-				psmt.setString(4, dto.getName());
-				psmt.setString(5, dto.getName());
-				psmt.setString(6, dto.getName());
-				psmt.setString(7, dto.getName());
-				psmt.setString(8, dto.getName());
+				psmt.setString(2, dto.getNick());
+				psmt.setString(3, dto.getEmail());
+				psmt.setString(4, dto.getHp());
+				psmt.setString(5, dto.getZip());
+				psmt.setString(6, dto.getAddr1());
+				psmt.setString(7, dto.getAddr2());
+				psmt.setString(8, dto.getUid());
 				psmt.executeUpdate();
 				close();
 				
@@ -281,7 +281,7 @@ public class UserDAO extends DBHelper{
 					psmt = conn.prepareStatement(SQL.UPDATE_USER_PASS);
 					psmt.setString(1, pass);
 					psmt.setString(2, uid);
-					psmt.executeUpdate();
+					result = psmt.executeUpdate();
 					close();		
 			} catch(Exception e) {
 					logger.error("updateUserPass() error : " + e.getMessage());
@@ -309,14 +309,11 @@ public class UserDAO extends DBHelper{
 		public void deleteUser(String uid) {
 			try {
 					conn = getConnection();
-				
-				
-				
+						
 			}catch(Exception e) {
 					logger.error("deleteUser() error : " + e.getMessage());
 			}
 			
 		}
-	
-	
+		
   }

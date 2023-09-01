@@ -88,7 +88,7 @@ public class UserService {
 		// 인증코드 생성
 		int code = ThreadLocalRandom.current().nextInt(100000, 1000000);		
 		generatedCode = String.valueOf(code);
-		
+		logger.info("gCode + " +generatedCode );
 		// 기본정보
 		String sender = "tngus78901@gmail.com";
 		String password = "nnvspwoecilbyxhw";

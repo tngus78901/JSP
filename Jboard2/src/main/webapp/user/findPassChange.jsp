@@ -2,21 +2,21 @@
 <%@ include file="./_header.jsp" %>
 <script src="/Jboard2/js/validation.js"></script>
 <script>
-	
 	window.onload = function(){
-		
-		const btnPassChange = document.getElementById('btnPassChange');
-		const formFindPassChange = document.getElementById('formFindPassChange');
-		
-		btnPassChange.onclick = function(e) {
-				e.preventDefault();
-				formFindPassChange.submit();
-		}
+		    const btnPassChange = document.getElementById('btnPassChange');
+			const formFindPassChange = document.getElementById('formFindPassChange');
+			
+			btnPassChange.onclick = function(e) {
+					e.preventDefault();
+				
+					if(isPassOk) {
+							formFindPassChange.submit();
+					}else{
+							alert('변경 비밀번호가 유효하지 않거나 일치하지 않습니다.');
+										
+				}
+			}
 	}
-
-
-
-
 </script>
 <main id="user">
     <section class="find findPassChange">
