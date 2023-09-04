@@ -1,4 +1,6 @@
+<%@page import="kr.co.farmstory2.dto.TermsDTO"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="../_header.jsp" %>
  <div id="user">
  <section class="terms">
  <script>
@@ -25,11 +27,16 @@
 	    		});
 	    }
    </script>
+   <%
+   		TermsDTO dto = UserDAO.getInstance().selectTerms();
+   %>
+   <div id="user">
+   	<section class="terms">
                 <table>
                     <caption>사이트 이용약관</caption>
                     <tr>
                         <td>
-                            <textarea readonly><%= vo.getTerms() %></textarea>
+                            <textarea readonly><%= dto.getTerms() %></textarea>
                             <p>
                                 <label><input type="checkbox" name="chk1"/>동의합니다.</label>
                             </p>
@@ -40,7 +47,7 @@
                     <caption>개인정보 취급방침</caption>
                     <tr>
                         <td>
-                            <textarea readonly><%= vo.getPrivacy() %></textarea>
+                            <textarea readonly><%= dto.getPrivacy() %></textarea>
                             <p>
                                 <label><input type="checkbox" name="chk2"/>동의합니다.</label>
                             </p>
@@ -48,8 +55,9 @@
                     </tr>
                 </table>
                 <div>
-                    <a href="/Jboard1/user/login.jsp" class="btnCancel">취소</a>
+                    <a href="/Farmstory2/user/login.jsp" class="btnCancel">취소</a>
                     <a href="#" class="btnNext">다음</a>
                 </div>
             </section>
             </div>
+<%@ include file="../_footer.jsp" %> 

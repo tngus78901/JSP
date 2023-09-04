@@ -1,123 +1,107 @@
-<%@page import="java.util.List"%>
-<%@page import="kr.farmstory1.dto.ArticleDTO"%>
-<%@page import="kr.farmstory1.dao.ArticleDAO"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp" %>
-<%
+<%@ include file="../_header.jsp" %>
 
-		request.setCharacterEncoding("UTF-8");
-		String group = request.getParameter("group");
-		String cate  = request.getParameter("cate");
-		String no    = request.getParameter("no");
-		
-		
-		// 로그인 여부 확인
-		if(sessUser == null){
-				response.sendRedirect("/Farmstory1/board/list.jsp?group="+group+"+cate");
-				return;
-		}
-		
-		// 데이터베이스 조회
-		ArticleDAO dao = new ArticleDAO();
-		
-		ArticleDTO dto = dao.selectArticle(no);
-		List<ArticleDTO> comments = dao.selectComments(no);
-		
-		pageContext.include("./_aside"+group+".jsp");
-%>
-<script>
+        <div id="sub">
+            <div><img src="../images/sub_top_tit2.png" alt="MARKET"></div>
+            <section class="market">
+                <aside>
+                    <img src="../images/sub_aside_cate2_tit.png" alt="장보기"/>
 
-		$(function(){
-				$('.btnDelete').click(function(){
-						if(confirm('정말 삭제 하시겠습니다?')) {
-								return true;
-						}else {
-								return false;
-				}			
-		});
-				
-	});
+                    <ul class="lnb">
+                        <li class="on"><a href="./market.html">장보기</a></li>
+                    </ul>
+                </aside>
+                <article class="view">
+                    <nav>
+                        <img src="../images/sub_nav_tit_cate2_tit1.png" alt="장보기"/>
+                        <p>
+                            HOME > 장보기 > <em>장보기</em>
+                        </p>
+                    </nav>
 
-</script>
+                    <!-- 내용 시작 -->
+                    <h3>기본정보</h3>
+                    <div class="basic">
+                        <img src="../images/market_item_thumb.jpg" alt="딸기 500g">
 
-<section class="view">
-	<h3>글보기</h3>
-	<table>
-		<tr>
-			<td>제목</td>
-			<td><input type="text" name="title" value="<%= dto.getTitle() %>" readonly></td>
-		</tr>
-		<% if(dto.getFile() > 0) { %>
-		<tr>
-			<td>첨부파일</td>
-			<td>
-				<a href="#">2020년 상반기 매출자료.xls</a>
-				<sapn>7회 다운로드</sapn>
-			</td>		
-		</tr>	
-		<% } %>
-		<tr>
-			<td>내용</td>
-			<td>
-				<textarea name="content" readonly><%= dto.getContent() %></textarea>
-				</td>		
-			</tr>
-		</table>
-		<div>
-			<a href="./delete.jsp?group=<%= group %>&cate=<%= cate %>&no=<%= no %>" class="btnDelete">삭제</a>
-			<a href="./modify.jsp?group=<%= group %>&cate=<%= cate %>&no=<%= no %>" class="btnModify">수정</a>
-			<a href="./list.jsp?group=<%= group %>&cate=<%= cate %>" class="btnList">목록</a>
-		</div>
-	
-	
-		<!-- 댓글리스트 -->
-		<section class="commentList">
-			<h3>댓글목록</h3>
-			<% for(ArticleDTO comment : comments) { %>
-			<article class="comment">
-				<form action="#" method="post">
-					<input type="hidden" name="no" 		value="">
-					<input type="hideen" name="parent"  value="">
-							<sapn>
-									<sapn><%= comment.getNick() %></sapn>
-									<sapn><%= comment.getRdate() %></sapn>						
-							</sapn>
-							<textarea name="comment" readonly><%= comment.getContent() %></textarea>
-					
-							<% if(sessUser.getUid().equals(comment.getWriter())) { %>
-							<div>
-									<a href="#" class="del">삭제</a>
-									<a href="#" class="can">취소</a>
-									<a href="#" class="mod">수정</a>
-							</div>
-				<% } %>
-			</form>		
-		</article>
-		<% } %>
-		
-		<% if(comments.isEmpty()) { %>
-		<p class="empty">등록된 댓글이 없습니다.</p>
-		<% } %>	
-	</section>
-	
-	<!-- 댓글입력폼 -->
-	<section class="commentForm">
-			<h3>댓글쓰기</h3>	
-			<form action="./proc/commentInsert.jsp" method="post">
-				<input type="hidden" name="group" value="<%= group %>"/>
-				<input type="hidden" name="cate" value="<%= cate %>"/>
-				<input type="hidden" name="parent" value="<%= no %>"/>
-				<input type="hidden" name="writer" value="<%= sess.getUid() %>"/>		
-			<textarea name="content"></textarea>
-			<div>
-					<a href="#" class="btnCamcel">취소</a>
-					<input type="submit" class="btnWrite" value="작성완료"/>
-			</div>
-			</form>
-	</section>
-</section>
-<!--  내용 끝 -->
-		</article>
-	</section>
-</div>
-<%@ include file="../_footer.jsp" %>
+                        <table border="0">                            
+                            <tr>
+                                <td>상품명</td>
+                                <td>딸기 500g</td>
+                            </tr>
+                            <tr>
+                                <td>상품코드</td>
+                                <td>01</td>
+                            </tr>
+                            <tr>
+                                <td>배송비</td>
+                                <td>
+                                    <span>5,000</span>원
+                                    <em>3만원 이상 무료배송</em>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>판매가격</td>
+                                <td>4,000원</td>
+                            </tr>
+                            <tr>
+                                <td>구매수량</td>
+                                <td>
+                                    <input type="number" name="count" min="1" value="1">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>합계</td>
+                                <td class="total">4,000원</td>
+                            </tr>
+
+                            <a href="./order.html" class="btnOrder">
+                                <img src="../images/market_btn_order.gif" alt="바로 구매하기"/>
+                            </a>
+
+                        </table>
+                    </div>
+                    <h3>상품설명</h3>
+                    <div class="detail">
+                        <img src="../images/market_detail_sample.jpg" alt="">
+
+                    </div>
+
+                    <h3>배송정보</h3>
+                    <div class="delivery">
+                        <p>
+                            입금하신 이후 택배송장번호는 SMS(문자서비스)를 통해 고객님께 안내해드립니다.
+                        </p>
+                    </div>
+
+                    <h3>교환/반품</h3>                  
+                    <div class="exchange">
+                        <table border="0">
+                            <tr>
+                                <td>교환 반품이 가능한 경우</td>
+                                <td>
+                                    <ul>
+                                        <li>팜스토리 상품에 하자가 있거나 불량인 경우</li>
+                                        <li>채소, 과일, 양곡등의 식품은 만1일 이내</li>
+                                        <li>기타 상품은 수령일로부터 영업일 기준 일주일 이내</li>
+                                        <li>받으신 상품이 표시사항과 다른 경우에는 받으신 날로부터 일주일 이내</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>교환 반품이 불가능한 경우</td>
+                                <td>
+                                    <ul>
+                                        <li>신선 식품의 경우 단순히 마음에 들지 않는 경우</li>
+                                        <li>단순 변심으로 상품이 가치가 훼손돼서 판매가 어려운 경우</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- 내용 끝 -->
+                </article>
+            </section>
+
+        </div>
+<%@ include file="../_footer.jsp" %> 

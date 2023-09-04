@@ -1,34 +1,67 @@
-<%@page import="kr.farmstory1.dto.ArticleDTO"%>
-<%@page import="java.util.List"%>
-<%@page import="kr.farmstory1.dao.ArticleDAO"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="./_header.jsp" %>
-<%
-	ArticleDAO dao = new ArticleDAO();
-	List<ArticleDTO> latests1 = dao.selectLatests("grow", 5);
-	List<ArticleDTO> latests2 = dao.selectLatests("school", 5);
-	List<ArticleDTO> latests3 = dao.selectLatests("story", 5);
-	
-	List<ArticleDTO> tabLatest1 = dao.selectLatests("stroy", 3);
-	List<ArticleDTO> tabLatest2 = dao.selectLatests("qna", 3);
-	List<ArticleDTO> tabLatest3 = dao.selectLatests("faq", 3);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>팜스토리</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"/>
+    <link rel="stylesheet" href="./css/style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>    
+    <script>
+        $(function(){
+            $('.slider > ul').bxSlider({
+                slideWidth: 980,
+                pager: false,
+                controls: false,
+                auto: true
+            });
 
+            $('#tabs').tabs();
+        });
+    </script>
 
-%>
-<main>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <a href="./index.html" class="logo"><img src="./images/logo.png" alt="로고"/></a>
+            <p>
+                <a href="#">HOME |</a>
+                <a href="./user/login.html">로그인 |</a>
+                <a href="./user/register.html">회원가입 |</a>
+                <a href="./admin/">관리자 |</a>
+                <a href="#">고객센터</a>
+            </p>
+            <img src="./images/head_txt_img.png" alt="3만원 이상 무료배송"/>
+            
+            <ul class="gnb">
+                <li><a href="./introduction/hello.html">팜스토리소개</a></li>
+                <li><a href="./market/list.html"><img src="./images/head_menu_badge.png" alt="30%"/>장보기</a></li>
+                <li><a href="./croptalk/story.html">농작물이야기</a></li>
+                <li><a href="./event/event.html">이벤트</a></li>
+                <li><a href="./community/notice.html">커뮤니티</a></li>
+            </ul>
+        </header>
+        <main>
             <div class="slider">
                 <ul>
                     <li><img src="./images/main_slide_img1.jpg" alt="슬라이더1"></li>
                     <li><img src="./images/main_slide_img2.jpg" alt="슬라이더2"></li>
                     <li><img src="./images/main_slide_img3.jpg" alt="슬라이더3"></li>
                 </ul>
+
                 <img src="./images/main_slide_img_tit.png" alt="사람과 자연을 사랑하는 팜스토리"/>
+
                 <div class="banner">
                     <img src="./images/main_banner_txt.png" alt="GRAND OPEN"/>
                     <img src="./images/main_banner_tit.png" alt="팜스토리 오픈기념 30% 할인 이벤트"/>
                     <img src="./images/main_banner_img.png" alt="과일"/>
                 </div>
             </div>
+
             <div class="quick">
                 <a href="#"><img src="./images/main_banner_sub1_tit.png" alt="오늘의 식단"></a>
                 <a href="#"><img src="./images/main_banner_sub2_tit.png" alt="나도 요리사"></a>                
@@ -39,34 +72,68 @@
                     <a href="#"><img src="./images/main_latest1_tit.png" alt="텃밭 가꾸기"/></a>
                     <img src="./images/main_latest1_img.jpg" alt="이미지"/>
                     <table border="0">
-                    	<% for(ArticleDTO latest : latests1) { %>
                         <tr>
                             <td>></td>
-                            <td><a href="#"><%= latest.getTitle() %></a></td>
-                            <td><%= latest.getRdate() %></td>
+                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
+                            <td>20-12-22</td>
                         </tr>
-                        <% } %>
+                        <tr>
+                            <td>></td>
+                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
+                            <td>20-12-22</td>
+                        </tr>
+                        <tr>
+                            <td>></td>
+                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
+                            <td>20-12-22</td>
+                        </tr>
+                        <tr>
+                            <td>></td>
+                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
+                            <td>20-12-22</td>
+                        </tr>
+                        <tr>
+                            <td>></td>
+                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
+                            <td>20-12-22</td>
+                        </tr>
                     </table>
                 </div>
                 <div>
                     <a href="#"><img src="./images/main_latest2_tit.png" alt="귀농학교"/></a>
                     <img src="./images/main_latest2_img.jpg" alt="이미지"/>
                     <table border="0">
-                    	<% for(ArticleDTO latest : latests2) { %>
                         <tr>
                             <td>></td>
-                            <td><a href="#"><%= latest.getTitle() %></a></td>
-                            <td><%= latest.getRdate() %></td>
+                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
+                            <td>20-12-22</td>
                         </tr>
-                        <% } %>
+                        <tr>
+                            <td>></td>
+                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
+                            <td>20-12-22</td>
+                        </tr>
+                        <tr>
+                            <td>></td>
+                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
+                            <td>20-12-22</td>
+                        </tr>
+                        <tr>
+                            <td>></td>
+                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
+                            <td>20-12-22</td>
+                        </tr>
+                        <tr>
+                            <td>></td>
+                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
+                            <td>20-12-22</td>
+                        </tr>
                     </table>
                 </div>
                 <div>
                     <a href="#"><img src="./images/main_latest3_tit.png" alt="농작물 이야기"/></a>
                     <img src="./images/main_latest3_img.jpg" alt="이미지"/>
                     <table border="0">
-                    	<% for(ArticleDTO latest : ) %>
-                    
                         <tr>
                             <td>></td>
                             <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
@@ -89,10 +156,9 @@
                         </tr>
                         <tr>
                             <td>></td>
-                            <td><a href="#"><%= latest.getTitle() %></a></td>
-                            <td><%= latest.getRdate() %></td>
+                            <td><a href="#">토마토! 건강하게 길러서 안심하고 먹자</a></td>
+                            <td>20-12-22</td>
                         </tr>
-                        <% } %>
                     </table>
                 </div>
                 
@@ -135,27 +201,27 @@
                         </ul>
                         <div id="tabs-1">
                             <ul class="txt">
-                                <% for(ArticleDTO latest : tabLatest1) { %>
-                                <li><a href="#">. <%= latest.getTitle() %></a></li>
-                                <% } %>
+                                <li><a href="#">· 홈페이지 오픈 기념 이벤트를 진행합니다.</a></li>
+                                <li><a href="#">· 홈페이지 오픈 기념 이벤트를 진행합니다.</a></li>
+                                <li><a href="#">· 홈페이지 오픈 기념 이벤트를 진행합니다.</a></li>
                             </ul>
                         </div>
                         <div id="tabs-2">
                             <ul class="txt">
-                               <% for(ArticleDTO latest : tabLatest2) { %>
-                                <li><a href="#">. <%= latest.getTitle() %></a></li>
-                                <% } %>
+                                <li><a href="#">· 홈페이지 이용 관련 불편사항을 들려주세요.</a></li>
+                                <li><a href="#">· 홈페이지 이용 관련 불편사항을 들려주세요.</a></li>
+                                <li><a href="#">· 홈페이지 이용 관련 불편사항을 들려주세요.</a></li>
                             </ul>
                         </div>
                         <div id="tabs-3">
                             <ul class="txt">
-                                <% for(ArticleDTO latest : tabLatest3) { %>
-                                <li><a href="#">. <%= latest.getTitle() %></a></li>
-                                <% } %>
+                                <li><a href="#">· 홈페이지를 오픈하였습니다.</a></li>
+                                <li><a href="#">· 홈페이지를 오픈하였습니다.</a></li>
+                                <li><a href="#">· 홈페이지를 오픈하였습니다.</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
-     <%@ include file="./_footer.jsp" %>   
+<%@ include file="../_footer.jsp" %>

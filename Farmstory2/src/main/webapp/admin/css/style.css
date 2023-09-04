@@ -383,9 +383,3 @@ footer > p {
     border: 0;
     cursor: pointer;
 }
-
-/* 장보기 */
-#sub > .market > .list > table .thumb {
-	width: 120px;
-	height: 120px;
-}
