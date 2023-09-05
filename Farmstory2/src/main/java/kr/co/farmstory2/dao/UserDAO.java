@@ -1,9 +1,14 @@
 package kr.co.farmstory2.dao;
 
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import kr.co.farmstory2.db.DBHelper;
+import kr.co.farmstory2.db.SQL;
 import kr.co.farmstory2.dto.TermsDTO;
 import kr.co.farmstory2.dto.UserDTO;
-import kr.farmstory2.db.DBHelper;
-import kr.farmstory2.db.SQL;
 
 public class UserDAO extends DBHelper {
 	
@@ -13,20 +18,22 @@ public class UserDAO extends DBHelper {
 	}
 	private UserDAO() {}
 	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	public void insertUser(UserDTO dto) {
 		try {
 			conn = getConnection();
 			psmt = conn.prepareStatement(SQL.INSERT_USER);
 			psmt.setString(1, dto.getUid());
-			psmt.setString(1, dto.getPass());
-			psmt.setString(1, dto.getName());
-			psmt.setString(1, dto.getNick());
-			psmt.setString(1, dto.getEmail());
-			psmt.setString(1, dto.getHp());
-			psmt.setString(1, dto.getZip());
-			psmt.setString(1, dto.getAddr1());
-			psmt.setString(1, dto.getAddr2());
-			psmt.setString(1, dto.getRegip());
+			psmt.setString(2, dto.getPass());
+			psmt.setString(3, dto.getName());
+			psmt.setString(4, dto.getNick());
+			psmt.setString(5, dto.getEmail());
+			psmt.setString(6, dto.getHp());
+			psmt.setString(7, dto.getZip());
+			psmt.setString(8, dto.getAddr1());
+			psmt.setString(9, dto.getAddr2());
+			psmt.setString(10, dto.getRegip());
 			psmt.executeUpdate();
 			close();
 			
@@ -44,8 +51,9 @@ public class UserDAO extends DBHelper {
 			psmt.setString(1, uid);
 			psmt.setString(2, pass);
 			rs = psmt.executeQuery();
-			
 			if(rs.next()) {
+				
+				logger.debug("uid : " + uid + "/ pass : " + pass);
 				
 				user = new UserDTO();
 				user.setUid(rs.getString(1));
@@ -68,10 +76,14 @@ public class UserDAO extends DBHelper {
 		}
 		return user;
 	}
-	public void selectUsers() {}
-	public void updateUser() {}
-	public void deleteUser() {}
-	
+
+	public List<UserDTO> selectUsers() {
+		return null;
+	}
+	public void updateUser(UserDTO dto) {
+	}
+	public void deleteUser(String uid) {
+	}
 	public int selectCountUid(String uid) {
 		
 		int result = 0;
@@ -150,8 +162,9 @@ public class UserDAO extends DBHelper {
 			conn = getConnection();
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(SQL.SELECT_TERMS);
-			
+			logger.debug("selectTerms()실행중");
 			if(rs.next()) {
+				logger.debug(rs.getString(1));
 				dto.setTerms(rs.getString(1));
 				dto.setPrivacy(rs.getString(2));
 			}

@@ -1,4 +1,4 @@
-package kr.farmstory2.db;
+package kr.co.farmstory2.db;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,7 +25,7 @@ public class DBHelper {
 		try {
 			Context ctx = (Context) new InitialContext().lookup("java:comp/env");
 			
-			DataSource ds = (DataSource) ctx.lookup("jdbc/Farmsotry2");
+			DataSource ds = (DataSource) ctx.lookup("jdbc/Farmstory2");
 			conn = ds.getConnection();
 		} catch (Exception e) {
 				e.printStackTrace();

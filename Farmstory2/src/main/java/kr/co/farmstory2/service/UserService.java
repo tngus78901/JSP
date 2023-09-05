@@ -3,6 +3,7 @@ package kr.co.farmstory2.service;
 import java.util.List;
 
 import kr.co.farmstory2.dao.UserDAO;
+import kr.co.farmstory2.db.SQL;
 import kr.co.farmstory2.dto.TermsDTO;
 import kr.co.farmstory2.dto.UserDTO;
 
@@ -31,7 +32,6 @@ public class UserService {
 	public int selectCountUid(String uid) {
 		return dao.selectCountUid(uid);
 	}
-	
 	public int selectCountNick(String nick) {
 		return dao.selectCountNick(nick);
 	}
@@ -41,7 +41,9 @@ public class UserService {
 	public int selectCountEmail(String email) {
 		return dao.selectCountEmail(email);
 	}
-	public TermsDTO selectTerms(String terms) {
-		
+	
+	public TermsDTO selectTerms() {
+		return dao.selectTerms();
 	}
+	
 }

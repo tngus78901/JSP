@@ -16,6 +16,14 @@ public class ProductDTO {
 	private String etc;
 	private String rdate;
 	private String path;
+	
+	public ProductDTO() {
+	}
+	
+	public ProductDTO(String path) {
+			this.path = path;
+	}
+	
 	public int getpNo() {
 		return pNo;
 	}

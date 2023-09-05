@@ -31,48 +31,42 @@ public enum ArticleService {
 	private ArticleDAO dao = new ArticleDAO();
 	
 	public int insertArticle(ArticleDTO dto) {
-		return dao.insertArticle(dto);
+			return dao.insertArticle(dto);
 	}
 	
 	public ArticleDTO selectArticle(String no) {
-		return dao.selectArticle(no);
+			return dao.selectArticle(no);
 	}
-	public List<ArticleDTO> selectArticles(int start, String search) {
-		return dao.selectArticles(start, search);
+	public List<ArticleDTO> selectArticles(String cate, int start) {
+			return dao.selectArticles(cate, start);
 	}
 	
 	public void updateArticle(ArticleDTO dto) {
-		dao.updateArticle(dto);
+			dao.updateArticle(dto);
 	}
 	
 	public void deleteArticle(String no) {
-		dao.deleteArticle(no);
+			dao.deleteArticle(no);
 	}
 	
 	// 추가
-	public int selectCountTotal(String search) {
-		return dao.selectCountTotal(search);
+	public int selectCountTotal(String cate) {
+		return dao.selectCountTotal(cate);
 	}
+	
 	public List<ArticleDTO> selectComments(String parent) {
 		return dao.selectComments(parent);
 	}
 	
-	public int insertCommnet(ArticleDTO dto) {
-		return dao.insertComment(dto);
+	public void insertCommnet(ArticleDTO dto) {
+			dao.insertComment(dto);
 	}
 	
-	public void updateArticleForCommentPlus(String no) {
-		dao.updateArticleForCommentPlus(no);
-	}
-	
-	public void updateArticleForCommentMinus(String no) {
-		dao.updateArticleForCommentMinus(no);
-	}
 	public void updateComment(String no, String content) {
-		dao.updateComment(no, content);
+			dao.updateComment(no, content);
 	}
-	public int deleteComment(String no) {
-		return dao.deleteComment(no);
+	public void deleteComment(String no) {
+			dao.deleteComment(no);
 	}
 	
 	// 업로드 경로 구하기
@@ -176,11 +170,13 @@ public enum ArticleService {
 	public int[] getPageGroupNum(int currentPage, int lastPageNum) {
 		int currentPageGroup = (int)Math.ceil(currentPage / 10.0);
 		int pageGroupStart = (currentPageGroup - 1) * 10 + 1;
+		int pageGroupEnd = currentPage * 10;
 		
 		if(pageGroupEnd > lastPageNum) {
 			pageGroupEnd = lastPageNum;
 			
 		}
+		
 		int[] result = {pageGroupStart, pageGroupEnd};
 		
 		return result;

@@ -1,11 +1,11 @@
-package kr.farmstory2.db;
+package kr.co.farmstory2.db;
 
 public class SQL {
 	
 	// User
 	public static final String INSERT_USER = "INSERT INTO `User` SET"
 																			+ "`uid`=?,"
-																			+ "`pass`=SHA(?,256),"
+																			+ "`pass`=SHA2(?,256),"
 																			+ "`name`=?,"
 																			+ "`nick`=?,"
 																			+ "`email`=?,"
@@ -18,11 +18,11 @@ public class SQL {
 			
 			
 			
-	public static final String SELECT_USER ="SELECT * FROM `User` WHERE `uid`=? AND `pass`=SHA2(?,256)";
-	public static final String SELECT_COUNT_UID ="SELECT COUNT(*) FROM `User` WHERE `uid`=?";
-	public static final String SELECT_COUNT_NICK ="SELECT COUNT(*) FROM `User` WHERE `nick`=?";
-	public static final String SELECT_COUNT_EMAIL ="SELECT COUNT(*) FROM `User` WHERE `email`=?";
-	public static final String SELECT_COUNT_HP ="SELECT COUNT(*) FROM `User` WHERE `hp`=?";
+	public static final String SELECT_USER       = "SELECT * FROM `User` WHERE `uid`=? AND `pass`=SHA2(?,256)";
+	public static final String SELECT_COUNT_UID  = "SELECT COUNT(*) FROM `User` WHERE `uid`=?";
+	public static final String SELECT_COUNT_NICK = "SELECT COUNT(*) FROM `User` WHERE `nick`=?";
+	public static final String SELECT_COUNT_EMAIL= "SELECT COUNT(*) FROM `User` WHERE `email`=?";
+	public static final String SELECT_COUNT_HP   = "SELECT COUNT(*) FROM `User` WHERE `hp`=?";
 	
 	// Terms
 	public static final String SELECT_TERMS ="SELECT * FROM `Terms`";  
@@ -34,10 +34,11 @@ public class SQL {
 																			+ "`cate`=?,"	
 																			+ "`title`=?,"	
 																			+ "`content`=?,"	
+																			+ "`file`=?,"	
 																			+ "`writer`=?,"	
 																			+ "`regip`=?,"	
 																			+ "`rdate`=NOW()";	
-																			
+																		
 	public final static String INSERT_COMMENT = "INSERT INTO `Article` SET"  
 																			+ "`parent`=?,"
 																			+ "`content`=?,"
@@ -47,7 +48,9 @@ public class SQL {
 	
 	public final static String SELECT_LATESTS = "SELECT `no`,`title`,`rdate` FROM `Article`"
 																			+ "WHERE `parent`=0 AND `cate`=?"
-																			+ "WHERE `cate`=? Order BY `no` DESC LIMIT?";
+																			+ "Order BY `no` DESC LIMIT?";
+	
+	public final static String SELECT_MAX_NO = "SELECT MAX(`no`) FROM `Article`";
 	public final static String SELECT_ARTICLE = "SELECT * FROM `Article` WHERE `no`=?";
 	public final static String SELECT_ARTICLES = "SELECT "
 																			+ "a.*,"
@@ -65,13 +68,26 @@ public class SQL {
 																			+ "WHERE `parent`=?";
 																			
 	public final static String SELECT_COUNT_TOTAL = "SELECT COUNT(*) FROM `Article` WHERE `parent`=0 AND `cate`=?";
+	
 	public final static String UPDATE_ARTICLE = "UPDATE `Article` SET `title`=?, `content`=? WHERE `no`=?";
 	public final static String UPDATE_ARTICLE_FOR_COMMENT_PLUS = "UPDATE `Article` SET `comment` = `comment` + 1 WHERE `no`=?";
 	public final static String UPDATE_ARTICLE_FOR_COMMENT_MINUS = "UPDATE `Article` SET `comment` = `comment` - 1 WHERE `no`=?";
-	public final static String UPDATE_COMMENT ="UPDATE `Article` SET `content`=? WHERE `no`=?";
-	public final static String DELETE_ARTICLE ="DELETE FROM `Article` WHERE `no`=? OR `parent`=?";
-	public final static String DELETE_COMMENT ="DELETE FROM `Article` WHERE `no`=?";
+	public final static String UPDATE_COMMENT = "UPDATE `Article` SET `content`=? WHERE `no`=?";
+	
+	public final static String DELETE_ARTICLE = "DELETE FROM `Article` WHERE `no`=? OR `parent`=?";
+	public final static String DELETE_COMMENT = "DELETE FROM `Article` WHERE `no`=?";
 
+	// File
+	public final static String INSERT_FILE = "INSERT INTO `File` SET "
+																			+ "`ano`=?,"
+																			+ "`ofile`=?,"
+																			+ "`sfile`=?,"
+																			+ "`rdate`=NOW()";
+		
+	public final static String SELECT_FILE = "SELECT * FROM `File` WHERE `fno`=?";
+	public final static String DELETE_FILE = "DELETE FROM `File` WHERE `ano`=?";
+	
+	
 	// Product
 	public final static String INSERT_PRODUCT = "INSERT INTO `Product` SET "
 																			  + "`type`=?,"
@@ -84,12 +100,12 @@ public class SQL {
 																			  + "`thumb3`=?,"
 																			  + "`seller`=?,"
 																			  + "`etc`=?,"
-																			  + "rate``=NOW()";
+																			  + "rdate`=NOW()";
 	
-	public final static String SELECT_PRODUCT = "SELECT * FROM `Product` WHERE `pNo` =?";
-	public final static String SELECT_PRODUCTS_ALL = "SELECT * FROM `Product` WHERE `stock` > 0 LIMIT ?,10 ";
-	public final static String SELECT_PRODUCTS_TYPE = "SELECT * FROM `Product` WHERE `stock` > 0 AND `type`=? LIMIT ?,10";
-	public final static String SELECT_COUNT_PRODUCTS_ALL = "SELECT COUNT (*) FROM `Product` WHERE `stock` > 0";
+	public final static String SELECT_PRODUCT             = "SELECT * FROM `Product` WHERE `pNo` =?";
+	public final static String SELECT_PRODUCTS_ALL        = "SELECT * FROM `Product` WHERE `stock` > 0 LIMIT ?,10 ";
+	public final static String SELECT_PRODUCTS_TYPE       = "SELECT * FROM `Product` WHERE `stock` > 0 AND `type`=? LIMIT ?,10";
+	public final static String SELECT_COUNT_PRODUCTS_ALL  = "SELECT COUNT (*) FROM `Product` WHERE `stock` > 0";
 	public final static String SELECT_COUNT_PRODUCTS_TYPE = "SELECT COUNT (*) `Product` WHERE `stock` > 0 AND `type`=?";
 	
 	// Order
@@ -112,11 +128,16 @@ public class SQL {
 																				+ "a.*,"
 																				+ "b.`pName`,"
 																				+ "b.`thumb1`,"
-																				+ "FROM `Order` AS as"
-																				+ "JOIN `Product` AS b"
-																				+ "ON a.orderProduct = b.No"
+																				+ "FROM `Order` AS a "
+																				+ "JOIN `Product` AS b "
+																				+ "ON a.orderProduct = b.No "
 																				+ "LIMIT ?, 10";
 																				
 	public final static String SELECT_COUNT_ORDERS = "SELECT COUNT(*) FROM `Order`";
+	public final static String DELETE_ORDER = "DELETE FROM `Order` WHERE `orderNo`=?";
+
+
+	
+	
 	
 }

@@ -1,8 +1,8 @@
 package kr.co.farmstory2.dao;
 
+import kr.co.farmstory2.db.DBHelper;
+import kr.co.farmstory2.db.SQL;
 import kr.co.farmstory2.dto.TermsDTO;
-import kr.farmstory2.db.DBHelper;
-import kr.farmstory2.db.SQL;
 
 public class TermsDAO extends DBHelper {
 	
