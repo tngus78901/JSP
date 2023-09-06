@@ -37,8 +37,8 @@ public enum ArticleService {
 	public ArticleDTO selectArticle(String no) {
 			return dao.selectArticle(no);
 	}
-	public List<ArticleDTO> selectArticles(String cate, int start) {
-			return dao.selectArticles(cate, start);
+	public List<ArticleDTO> selectArticles(int start,String cate) {
+			return dao.selectArticles(start, cate);
 	}
 	
 	public void updateArticle(ArticleDTO dto) {
@@ -58,15 +58,16 @@ public enum ArticleService {
 		return dao.selectComments(parent);
 	}
 	
-	public void insertCommnet(ArticleDTO dto) {
-			dao.insertComment(dto);
+	public ArticleDTO insertComment(ArticleDTO dto) {
+		return	dao.insertComment(dto);
 	}
 	
-	public void updateComment(String no, String content) {
-			dao.updateComment(no, content);
+	public int updateComment(String no, String content) {
+			return dao.updateComment(no, content);
 	}
-	public void deleteComment(String no) {
-			dao.deleteComment(no);
+	
+	public int deleteComment(String no) {
+		return dao.deleteComment(no);
 	}
 	
 	// 업로드 경로 구하기
@@ -173,7 +174,7 @@ public enum ArticleService {
 		int pageGroupEnd = currentPage * 10;
 		
 		if(pageGroupEnd > lastPageNum) {
-			pageGroupEnd = lastPageNum;
+				pageGroupEnd = lastPageNum;
 			
 		}
 		

@@ -41,7 +41,7 @@
 		            	<a href="${ctxPath}/board/list.do?group=${group}&cate=${cate}&pg=${pageGroupEnd + 1}" class="next">다음</a>
 		            </c:if>
 		        </div>
-			
+				
 			    <!-- 글쓰기 버튼 -->
 			    <a href="./write.do?group=${group}&cate=${cate}" class="btnWrite">글쓰기</a>
 			</section>

@@ -4,7 +4,7 @@
 			<section class="write">
 			    <h3>글쓰기</h3>
 			    <article>
-			        <form action="${ctxPath}/board/write.do" method="post" >
+			        <form action="${ctxPath}/board/write.do" method="post" enctype="multipart/form-data" >
 			            <input type="hidden" name="writer" value="${sessUser.uid}"/>
 			            <input type="hidden" name="group" value="${group}"/>
 			            <input type="hidden" name="cate" value="${cate}"/>

@@ -41,7 +41,7 @@ public class ViewController extends HttpServlet {
 		req.setAttribute("no", no);
 		req.setAttribute("article", article);
 		req.setAttribute("comments", comments);
-		
+		logger.debug("코멘트 갯수 : " + comments.size());
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/board/view.jsp");
 		dispatcher.forward(req, resp);	
 		

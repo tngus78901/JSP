@@ -14,7 +14,8 @@ public class ArticleDTO {
 		private String rdate;
 		
 		private String nick;
-	
+		private FileDTO fileDto;
+		
 		public String getNick() {
 			return nick;
 		}
@@ -22,9 +23,17 @@ public class ArticleDTO {
 		public void setNick(String nick) {
 			this.nick = nick;
 		}
-	
+		
+		public FileDTO getFileDto() {
+				return fileDto;
+		}
+		
+		public void setFileDto(FileDTO fileDto) {
+				this.fileDto = fileDto;
+		}
+		
 		public int getNo() {
-			return no;
+			 return no;
 		}
 	
 		public void setNo(int no) {
@@ -124,9 +133,18 @@ public class ArticleDTO {
 			return rdate;
 		}
 	
-		public void setRdate(String date) {
+		public void setRdate(String rdate) {
 			this.rdate = rdate;
 		}
-	
 		
+		public void setRdateYYMMDD(String rdate) {
+			this.rdate = rdate.substring(2, 10);
+		}
+		@Override
+		public String toString() {
+			return "ArticleDTO [no=" + no + ", parent=" + parent + ", comment=" + comment + ", cate=" + cate + ", title="
+					+ title + ", content=" + content + ", file=" + file + ", hit=" + hit + ", writer=" + writer + ", regip="
+					+ regip + ", rdate=" + rdate + ", nick=" + nick + ", fileDto=" + fileDto + "]";
+		}
+			
 	}

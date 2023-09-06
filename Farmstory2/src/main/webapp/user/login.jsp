@@ -5,7 +5,7 @@
  		- Context Root 경로 전역변수
  		- _header.jsp 5줄 참고
   -->
-  <div id="user">
+  	<div id="user">
   		<section class="login">
   		<form action="${ctxPath}/user/login.do" method="post" >
   			<table>

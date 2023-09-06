@@ -35,7 +35,7 @@ public class CheckLoginFilter implements Filter {
 		 	HttpServletRequest httpRequest = (HttpServletRequest) request;
 		 	HttpSession session = httpRequest.getSession();
 		 	
-		 	UserDTO sessUser = (UserDTO) session.getAttribute("sessUSer");
+		 	UserDTO sessUser = (UserDTO) session.getAttribute("sessUser");
 		 	
 		 	if(sessUser != null) {
 		 			logger.debug("here1...");

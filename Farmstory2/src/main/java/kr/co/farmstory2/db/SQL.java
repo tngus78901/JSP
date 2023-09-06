@@ -51,10 +51,10 @@ public class SQL {
 																			+ "Order BY `no` DESC LIMIT?";
 	
 	public final static String SELECT_MAX_NO = "SELECT MAX(`no`) FROM `Article`";
-	public final static String SELECT_ARTICLE = "SELECT * FROM `Article` WHERE `no`=?";
+	public final static String SELECT_ARTICLE = "SELECT  a.*, b.*  FROM `Article` AS a LEFT JOIN `File` AS b ON a.no = b.ano  WHERE `no`=?";
 	public final static String SELECT_ARTICLES = "SELECT "
 																			+ "a.*,"
-																			+ "b.`nick`,"
+																			+ "b.`nick` "
 																			+ "FROM `Article` AS a "
 																			+ "JOIN `User` AS b ON a.writer = b.uid "
 																			+ "WHERE `parent`=0 AND `cate`=? "
@@ -137,7 +137,16 @@ public class SQL {
 	public final static String DELETE_ORDER = "DELETE FROM `Order` WHERE `orderNo`=?";
 
 
-	
-	
-	
+	// comment
+	public final static String SELECT_COMMENT_LATEST2 = "SELECT `content`,`rdate` FROM `Article` "
+																				+ "WHERE `parent`= ? AND `cate`=? "
+																				+ "Order BY `no` DESC LIMIT ?";
+																		
+	public final static String SELECT_COMMENT_LATEST = "SELECT "
+														+ "a.*, "
+														+ "b.`nick` "
+														+ "FROM `Article` AS a "
+														+ "JOIN `User` AS b ON a.writer = b.uid "
+														+ "WHERE `parent`!=0 "
+														+ "ORDER BY `no` DESC LIMIT 1"; 
 }
