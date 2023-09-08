@@ -79,9 +79,8 @@ public enum ArticleService {
 	}
 	
 	// 파일명 수정
-	public String renameToFile(HttpServletRequest req, String oName) {
-		
-		String path = getFilePath(req);
+	public String renameToFile(HttpServletRequest req,String path, String oName) {
+				
 		
 		int i = oName.lastIndexOf(".");
 		String ext = oName.substring(i);
@@ -99,10 +98,7 @@ public enum ArticleService {
 	}
 	
 	// 파일 업로드
-	public MultipartRequest uploadFile(HttpServletRequest req) {
-		
-		// 파일 경로 구하기
-		String path = getFilePath(req);
+	public MultipartRequest uploadFile(HttpServletRequest req, String path) {
 		
 		// 최대 업로드 파일 크기
 		int maxSize = 1024 * 1024 * 10;
@@ -111,10 +107,10 @@ public enum ArticleService {
 		MultipartRequest mr = null;
 		
 		try {
-			mr = new MultipartRequest(req,
-											path,
-											maxSize,
-											"UTF-8",
+				mr = new MultipartRequest(req,
+												path,
+												maxSize,
+												"UTF-8",
 											new DefaultFileRenamePolicy());
 		} catch (IOException e) {
 			logger.error("uploadFile : " + e.getMessage());

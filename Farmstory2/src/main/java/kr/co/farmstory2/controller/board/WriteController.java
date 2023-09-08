@@ -3,6 +3,7 @@ package kr.co.farmstory2.controller.board;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,9 +24,18 @@ import kr.co.farmstory2.service.FileService;
 public class WriteController extends HttpServlet {
 	private static final long serialVersionUID = 1599577776214310002L;
 	
+	private String ctxPath;
+	
+	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	private ArticleService service = ArticleService.INSTANCE;
+	private ArticleService aService = ArticleService.INSTANCE;
 	private FileService fService = FileService.INSTANCE;
+	
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		// 컨텍스트 경로(/Farmstory2) 구하기(최초 1번, 모든 컨트롤러에 정의)
+		ctxPath = config.getServletContext().getContextPath();
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -46,7 +56,8 @@ public class WriteController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 			// 파일 업로드
-			MultipartRequest mr = service.uploadFile(req);
+			String path = aService.getFilePath(req);
+			MultipartRequest mr = aService.uploadFile(req, path);
 			logger.debug("뭐가");
 			// 폼 데이터 수신
 			String group   = mr.getParameter("group");
@@ -73,11 +84,11 @@ public class WriteController extends HttpServlet {
 			dto.setRegip(regip);
 
 			// 글 Insert
-			int no = service.insertArticle(dto);
+			int no = aService.insertArticle(dto);
 			
 			// 파일명 수정 및 파일 Insert
 			if(oName != null) {
-				String sName = service.renameToFile(req, oName);
+				String sName = aService.renameToFile(req, path, oName);
 				
 				// 파일 Insert
 				FileDTO fileDto = new FileDTO();

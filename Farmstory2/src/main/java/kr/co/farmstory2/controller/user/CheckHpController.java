@@ -22,7 +22,7 @@ public class CheckHpController extends HttpServlet {
 	private static final long serialVersionUID = 3252361587564494516L;
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	private UserService service = new UserService();
+	private UserService service = UserService.INSTANCE;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

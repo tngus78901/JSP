@@ -468,6 +468,12 @@ main > .info > div > .account {
     font-weight: bold;            
 }
 
+
+#sub > .market > .list > table .thumb {
+	width: 120px;
+	height: 120px;	
+}
+
 #sub > .market > .list > .paging {
     margin: 20px 0;
     text-align: center;
@@ -475,9 +481,8 @@ main > .info > div > .account {
 #sub > .market > .list > .paging > a {
     color: #999;
 }
-#sub > .market > .list > .paging > .on {
-    color: #111;
-    text-decoration: underline;
+#sub > .market > .list > .paging > .current {
+    color: #fff;
 }
 
 #sub > .market > .view > h3 {
@@ -489,12 +494,14 @@ main > .info > div > .account {
 
 #sub > .market > .view > .basic {
     width: 100%;
-    height: 270px;
+    height: 300px;
     position: relative;
     overflow: hidden;
 }
 #sub > .market > .view > .basic > img {
     float: left;
+    width: 240px;
+    height: 240px;
 }
 #sub > .market > .view > .basic > table {
     float: right;
@@ -520,7 +527,7 @@ main > .info > div > .account {
 }
 
 
-#sub > .market > .view > .detail {}
+#sub > .market > .view > .detail > img {width: 760px;}
 #sub > .market > .view > .delivery {}
 #sub > .market > .view > .exchange table {
     width: 100%;
@@ -567,6 +574,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 #sub > .market > .order > .info > img {
     float: left;
+    width: 240px;
 }
 #sub > .market > .order > .info > table {
     float: right;

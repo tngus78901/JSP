@@ -22,7 +22,7 @@ public class CheckUidController extends HttpServlet {
 	private static final long serialVersionUID = 2978271439988906937L;
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	private UserService service = new UserService();
+	private UserService service = UserService.INSTANCE;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

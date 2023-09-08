@@ -4,11 +4,16 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import kr.co.farmstory2.db.DBHelper;
 import kr.co.farmstory2.db.SQL;
 import kr.co.farmstory2.dto.ProductDTO;
 
 public class ProductDAO extends DBHelper {
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	public void insertProduct(ProductDTO dto) {
 		try {
@@ -19,12 +24,11 @@ public class ProductDAO extends DBHelper {
 			psmt.setInt(3, dto.getPrice());
 			psmt.setInt(4, dto.getDelivery());
 			psmt.setInt(5, dto.getStock());
-			psmt.setInt(6, dto.getSold());
-			psmt.setString(7, dto.getThumb1());
-			psmt.setString(8, dto.getThumb2());
-			psmt.setString(9, dto.getThumb3());
-			psmt.setString(10, dto.getSeller());
-			psmt.setString(11, dto.getEtc());
+			psmt.setString(6, dto.getThumb1());
+			psmt.setString(7, dto.getThumb2());
+			psmt.setString(8, dto.getThumb3());
+			psmt.setString(9, dto.getSeller());
+			psmt.setString(10, dto.getEtc());
 			psmt.executeUpdate();
 			close();
 		} catch (Exception e) {
@@ -86,8 +90,9 @@ public class ProductDAO extends DBHelper {
 				dto.setSeller(rs.getString(11));
 				dto.setEtc(rs.getString(12));
 				dto.setRdate(rs.getString(13));
-				products.add(dto);
+				logger.debug("productDTO : " + dto.toString());
 				
+				products.add(dto);
 			}
 			close();
 		} catch (Exception e) {
@@ -104,6 +109,7 @@ public class ProductDAO extends DBHelper {
     		conn = getConnection();
     		
     		if(type.equals("0")) {
+    				logger.debug(type);
     				psmt= conn.prepareStatement(SQL.SELECT_PRODUCTS_ALL);
     				psmt.setInt(1, start);
     		}else {
@@ -129,6 +135,10 @@ public class ProductDAO extends DBHelper {
 					dto.setEtc(rs.getString(12));
 					dto.setRdate(rs.getString(13));
 					products.add(dto);
+
+					logger.debug("productDTO : " + dto.toString());
+					logger.debug("price " );
+					
 			}
     		close();
 		} catch (Exception e) {

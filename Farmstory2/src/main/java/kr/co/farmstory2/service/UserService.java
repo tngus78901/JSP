@@ -2,14 +2,20 @@ package kr.co.farmstory2.service;
 
 import java.util.List;
 
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
 import kr.co.farmstory2.dao.UserDAO;
 import kr.co.farmstory2.db.SQL;
 import kr.co.farmstory2.dto.TermsDTO;
 import kr.co.farmstory2.dto.UserDTO;
 
-public class UserService {
+public enum UserService {
 
+	INSTANCE;
+	
 	private UserDAO dao = UserDAO.getInstance();
+	
 	
 	public void insertUser(UserDTO dto) {
 		dao.insertUser(dto);

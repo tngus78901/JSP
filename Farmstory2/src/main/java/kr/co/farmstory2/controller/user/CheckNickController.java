@@ -21,7 +21,7 @@ public class CheckNickController extends HttpServlet {
 	
 	private static final long serialVersionUID = -1186108387587485346L;
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	private UserService service = new UserService();
+	private UserService service = UserService.INSTANCE;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -3,6 +3,9 @@ package kr.co.farmstory2.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import kr.co.farmstory2.db.DBHelper;
 import kr.co.farmstory2.db.SQL;
 import kr.co.farmstory2.dto.FileDTO;
@@ -10,7 +13,11 @@ import kr.co.farmstory2.dto.OrderDTO;
 
 public class OrderDAO extends DBHelper{
 	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	public void insertOrder(OrderDTO dto) {
+		logger.debug("inserOrder DTO 주문내용 : " + dto.toString());
+		
 	try {
 		conn = getConnection();
 		psmt = conn.prepareStatement(SQL.INSERT_ORDER);

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +21,17 @@ import kr.co.farmstory2.service.ArticleService;
 public class ListController extends HttpServlet {
 	private static final long serialVersionUID = 7165514476577189368L;
 	
+	private String ctxPath;
+	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	private ArticleService service = ArticleService.INSTANCE;
+	
+	
+	@Override
+	public void init(ServletConfig config) throws ServletException {
+		// 컨텍스트 경로(/Farmstory2) 구하기(최초 1번, 모든 컨트롤러에 정의)
+		ctxPath = config.getServletContext().getContextPath();
+	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

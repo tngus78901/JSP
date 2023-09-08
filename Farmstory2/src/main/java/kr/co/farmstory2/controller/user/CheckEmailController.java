@@ -22,15 +22,14 @@ public class CheckEmailController extends HttpServlet {
 	private static final long serialVersionUID = -3236366622830922854L;
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	private UserService service = new UserService();
-	
+	private UserService uService = UserService.INSTANCE;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String email = req.getParameter("email");
 		logger.debug("email : " + email);
 		
-		int result = service.selectCountEmail(email);
+		int result = uService.selectCountEmail(email);
 		
 		// json생성
 		JsonObject json = new JsonObject();

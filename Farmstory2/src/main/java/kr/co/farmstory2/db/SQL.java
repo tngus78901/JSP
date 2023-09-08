@@ -23,6 +23,7 @@ public class SQL {
 	public static final String SELECT_COUNT_NICK = "SELECT COUNT(*) FROM `User` WHERE `nick`=?";
 	public static final String SELECT_COUNT_EMAIL= "SELECT COUNT(*) FROM `User` WHERE `email`=?";
 	public static final String SELECT_COUNT_HP   = "SELECT COUNT(*) FROM `User` WHERE `hp`=?";
+	public static final String SELECT_USERS   = "SELECT * FROM `User`";
 	
 	// Terms
 	public static final String SELECT_TERMS ="SELECT * FROM `Terms`";  
@@ -100,13 +101,13 @@ public class SQL {
 																			  + "`thumb3`=?,"
 																			  + "`seller`=?,"
 																			  + "`etc`=?,"
-																			  + "rdate`=NOW()";
+																			  + "`rdate`=NOW()";
 	
 	public final static String SELECT_PRODUCT             = "SELECT * FROM `Product` WHERE `pNo` =?";
 	public final static String SELECT_PRODUCTS_ALL        = "SELECT * FROM `Product` WHERE `stock` > 0 LIMIT ?,10 ";
 	public final static String SELECT_PRODUCTS_TYPE       = "SELECT * FROM `Product` WHERE `stock` > 0 AND `type`=? LIMIT ?,10";
-	public final static String SELECT_COUNT_PRODUCTS_ALL  = "SELECT COUNT (*) FROM `Product` WHERE `stock` > 0";
-	public final static String SELECT_COUNT_PRODUCTS_TYPE = "SELECT COUNT (*) `Product` WHERE `stock` > 0 AND `type`=?";
+	public final static String SELECT_COUNT_PRODUCTS_ALL  = "SELECT COUNT(*) FROM `Product` WHERE `stock` > 0";
+	public final static String SELECT_COUNT_PRODUCTS_TYPE = "SELECT COUNT(*) `Product` WHERE `stock` > 0 AND `type`=?";
 	
 	// Order
 	public final static String INSERT_ORDER =  "INSERT INTO `Order` SET"    

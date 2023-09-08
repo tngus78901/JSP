@@ -1,4 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- 개발/배포에서 ContextPath 포함 여부에 따른 동적처리 -->
+<c:set var="ctxPath" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,8 +19,8 @@
         <header>
             <a href="#" class="logo"><img src="/Farmstory2/admin/images/admin_logo.jpg" alt="로고"/></a>
             <p>
-                <a href="/">HOME |</a>
-                <a href="#">로그아웃 |</a>
+                <a href="${ctxPath}">HOME |</a>
+                <a href="${ctxPath}/user/logout.do">로그아웃 |</a>
                 <a href="#">고객센터</a>
             </p>
         </header>
