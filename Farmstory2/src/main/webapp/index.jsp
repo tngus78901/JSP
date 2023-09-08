@@ -124,7 +124,7 @@
                             <c:forEach var="article" items="${tabLatest2}">                    
 				            <ul>
 				                <li><a href="/Farmstory2/board/view.do?group=Community&cate=${article.cate}&no=${article.no}">${article.title}</a></li>
-				                <li>${article.rdate}</td>
+				                <li>${article.rdate}</li>
 				            </ul>
 			            </c:forEach>
                         </div>
@@ -132,7 +132,7 @@
                            <c:forEach var="article" items="${tabLatest3}">                    
 				          	<ul>
 				                <li><a href="/Farmstory2/board/view.do?group=Community&cate=${article.cate}&no=${article.no}">${article.title}</a></li>
-				                <li>${article.rdate}</td>
+				                <li>${article.rdate}</li>
 				            </ul>
 			            </c:forEach>
                         </div>
